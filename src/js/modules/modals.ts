@@ -4,14 +4,25 @@ const modals = (): void => {
         triggersSelector: string,
         modalSelector: string,
         closeSelector: string,
-        closeClickOverlay?: boolean
+        destroy?: boolean
     }
-    const bindModal = ({triggersSelector, modalSelector, closeSelector, closeClickOverlay = true}: Modal): void => {
+
+    let btnPressed:boolean = false;
+
+    const bindModal = ({triggersSelector, modalSelector, closeSelector, destroy = false}: Modal): void => {
         const triggers: NodeListOf<HTMLElement> = document.querySelectorAll(triggersSelector);
         const modal = document.querySelector(modalSelector) as HTMLDivElement;
         const close = document.querySelector(closeSelector) as HTMLButtonElement;
         const windows: NodeListOf<HTMLElement> = document.querySelectorAll('[data-modal]');
         const scroll = calcScroll();
+
+        const addAnimation = (): void => {
+            windows.forEach((window:HTMLElement) => {
+                window.classList.add('animated', 'fadeIn');
+            });
+        };
+
+        addAnimation();
 
         const closeAllModals = (): void => {
             windows.forEach((window: HTMLElement) => {
@@ -26,9 +37,15 @@ const modals = (): void => {
                 if (e.target) {
                     e.preventDefault();
                 }
+
+                if (destroy) {
+                   trigger.remove(); 
+                }
+
+                btnPressed = true;
         
             closeAllModals();
-    
+                
                 modal.style.display = "block";
                 document.body.style.overflow = "hidden";  
                 document.body.style.marginRight = `${scroll}px`; 
@@ -43,7 +60,7 @@ const modals = (): void => {
         close.addEventListener('click', () =>  closeModals());
 
         modal.addEventListener('click', (e) => {
-            if (e.target === modal && closeClickOverlay) {
+            if (e.target === modal) {
                 closeModals();
             }
         })
@@ -92,6 +109,15 @@ const modals = (): void => {
         return scrollWidth;
     }
 
+    const openByScroll = (selector: string): void => {
+        document.addEventListener('scroll', () => {
+            if (!btnPressed && (Math.round(window.scrollY) + document.documentElement.clientHeight >= document.documentElement.scrollHeight)) {
+                const gift = document.querySelector(selector) as HTMLElement;
+                gift.click();   
+            }
+        });
+    };
+
     bindModal({
         triggersSelector:'.button-design', 
         modalSelector:'.popup-design',
@@ -103,6 +129,15 @@ const modals = (): void => {
         modalSelector:'.popup-consultation', 
         closeSelector:'.popup-consultation .popup-close'
     });
+
+    bindModal({
+        triggersSelector:'.fixed-gift', 
+        modalSelector:'.popup-gift', 
+        closeSelector:'.popup-gift .popup-close',
+        destroy: true
+    });
+
+    openByScroll('.fixed-gift');
 
     showModalByTime('.popup-consultation', 10);
 };
