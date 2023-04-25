@@ -70,6 +70,9 @@ const modals = (): void => {
                 const getModal = document.querySelector(selector) as HTMLElement;
                 getModal.style.display = "block";
                 document.body.style.overflow = "hidden";
+
+                const scroll = calcScroll();
+                document.body.style.marginRight = `${scroll}px`; 
             }
 
         }, time * 1000);
