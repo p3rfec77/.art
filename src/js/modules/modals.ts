@@ -1,3 +1,5 @@
+import closeAllModals from "./closeAllModals";
+
 const modals = (): void => {
     
     interface Modal {
@@ -23,13 +25,6 @@ const modals = (): void => {
         };
 
         addAnimation();
-
-        const closeAllModals = (): void => {
-            windows.forEach((window: HTMLElement) => {
-                window.style.display = 'none';
-            })
-            document.body.style.overflow = "";
-        };
 
         triggers.forEach((trigger: HTMLElement) => {
 
