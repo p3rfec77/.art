@@ -1,8 +1,8 @@
 interface Slide {
     slidesSelector: string,
     dir: string,
-    prev: string,
-    next: string
+    prev?: string,
+    next?: string
 }
 
 const sliders = ({slidesSelector, dir, prev, next}: Slide): void => {
@@ -32,7 +32,7 @@ const sliders = ({slidesSelector, dir, prev, next}: Slide): void => {
         showSlides(slideIndex += n);
     };
 
-    try {
+    if(prev && next) {
         const prevBtn = document.querySelector(prev) as HTMLButtonElement;
         const nextBtn = document.querySelector(next) as HTMLButtonElement; 
 
@@ -49,7 +49,7 @@ const sliders = ({slidesSelector, dir, prev, next}: Slide): void => {
         });
 
 
-    } catch (e) {};
+    } 
 
     let paused: number;
 
