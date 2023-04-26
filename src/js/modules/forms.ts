@@ -79,7 +79,7 @@ const forms = (): void => {
             const data:{[key: string]: any} = {};
             formData.forEach((value, key) => data[key] = value);
 
-            postData('https://server-for-training.onrender.com/api/data', data)
+            postData('https://simple-server-cumz.onrender.com/api/data', data)
                 .then(response => {
                     statusImg.setAttribute('src', message.ok);
                     textMessage.textContent = message.success;
