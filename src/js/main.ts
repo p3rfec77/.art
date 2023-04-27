@@ -1,6 +1,7 @@
 import modals from "./modules/modals";
 import sliders from "./modules/sliders";
 import forms from "./modules/forms";
+import mask from "./modules/mask";
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -18,4 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     forms();
+
+    mask('[name="phone"]');
 })
