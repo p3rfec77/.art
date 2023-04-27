@@ -46,7 +46,6 @@ const forms = (): void => {
         upload.addEventListener('input', () => {
             const [fileName, fileExt]: string[] = upload.files![0].name.split('.');
             const dots: string = fileName.length > 20 ? '...' : '.';
-            console.log(dots);
 
             const name: string = fileName.substring(0, 21) + dots + fileExt;
             upload.previousElementSibling!.textContent = name;
