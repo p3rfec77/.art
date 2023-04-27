@@ -44,11 +44,11 @@ const forms = (): void => {
 
     uploads.forEach((upload: HTMLInputElement) => {
         upload.addEventListener('input', () => {
-            let dots:string;
-            const fileName: string[] = upload.files![0].name.split('.');
-            fileName[0].length > 20 ? dots = '...' : dots = '.';
+            const [fileName, fileExt]: string[] = upload.files![0].name.split('.');
+            const dots: string = fileName.length > 20 ? '...' : '.';
+            console.log(dots);
 
-            const name: string = fileName[0].substring(0, 21) + dots + fileName[1];
+            const name: string = fileName.substring(0, 21) + dots + fileExt;
             upload.previousElementSibling!.textContent = name;
         });
     });
@@ -80,7 +80,7 @@ const forms = (): void => {
             formData.forEach((value, key) => data[key] = value);
 
             postData('https://simple-server-cumz.onrender.com/api/data', data)
-                .then(response => {
+                .then(() => {
                     statusImg.setAttribute('src', message.ok);
                     textMessage.textContent = message.success;
                 })
