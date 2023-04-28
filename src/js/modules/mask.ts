@@ -15,35 +15,37 @@ const mask = (selector: string): void => {
         }
     };
 
-    const createMask = (event: string): void => {
+    const inputs = document.querySelectorAll(selector);
+
         const matrix = '+7 (___) ___ __ __';
         let i: number = 0;
         const def = matrix.replace(/\D/g, '');
-        let val: string = this.value.replace(/\D/g, '');
-
-        if (def.length >= val.length) {
-            val = def;
-        }
-
-        this.value = matrix.replace(/./g, (a) => {
-            return /\d/.test(a) && i < val.length ? val.charAt(i++) : i <= val.length ? '' : a;
-        });
-
-        if (event.type === 'blur') {
-            if (this.value.length == 2) {
-                this.value = '';
-            } else {
-                setCursorPosition(this.value.length, this);
-            }
-        }
-    };
-
-    const inputs = document.querySelectorAll(selector);
 
     inputs.forEach((input) => {
-        input.addEventListener('input', createMask);
-        input.addEventListener('focus', createMask);
-        input.addEventListener('blur', createMask);
+
+        input.addEventListener('input', (e: any) => {
+
+            let val: string = e.ta.value.replace(/\D/g, '');
+    
+            if (def.length >= val.length) {
+                val = def;
+            }
+    
+            e.target.value = matrix.replace(/./g, (a) => {
+                return /\d/.test(a) && i < val.length ? val.charAt(i++) : i <= val.length ? '' : a;
+            });
+        });
+
+
+        input.addEventListener('focus', (e: any) => {
+          setCursorPosition(e.target.value.length, input);
+        });
+
+        input.addEventListener('blur', (e: any) => {
+            if (e.target.value.length == 2) {
+                e.taget.value = '';
+            }
+        });
     });
 };
 
