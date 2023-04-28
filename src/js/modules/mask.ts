@@ -25,7 +25,7 @@ const mask = (selector: string): void => {
 
         input.addEventListener('input', (e: any) => {
 
-            let val: string = e.ta.value.replace(/\D/g, '');
+            let val: string = e.target.value.replace(/\D/g, '');
     
             if (def.length >= val.length) {
                 val = def;
