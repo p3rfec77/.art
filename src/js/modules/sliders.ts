@@ -5,7 +5,7 @@ interface Slide {
     next?: string
 }
 
-const sliders = ({slidesSelector, dir, prev, next}: Slide): void => {
+export const sliders = ({slidesSelector, dir, prev, next}: Slide): void => {
     let slideIndex: number = 1;
 
     const slides: NodeListOf<HTMLElement> = document.querySelectorAll(slidesSelector);
@@ -79,5 +79,3 @@ const sliders = ({slidesSelector, dir, prev, next}: Slide): void => {
         activateAnimation();
     });
 };
-
-export default sliders;

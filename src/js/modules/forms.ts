@@ -1,4 +1,4 @@
-const forms = (): void => {
+export const forms = (): void => {
     const allForms: NodeListOf<HTMLFormElement> = document.querySelectorAll('form');
     const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('input');
     const uploads: NodeListOf<HTMLInputElement> = document.querySelectorAll('[name="upload"]');
@@ -99,5 +99,3 @@ const forms = (): void => {
         });
     });
 };
-
-export default forms;
