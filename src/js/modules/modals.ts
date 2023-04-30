@@ -1,6 +1,6 @@
 import closeAllModals from "./closeAllModals";
 
-const modals = (): void => {
+export const modals = (): void => {
     
     interface Modal {
         triggersSelector: string,
@@ -136,5 +136,3 @@ const modals = (): void => {
 
     showModalByTime('.popup-consultation', 10);
 };
-
-export default modals;
