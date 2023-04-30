@@ -28,7 +28,7 @@ export const showMoreStyles = (triggerSelector: string, wrapperSelector: string)
     trigger.addEventListener('click', () => {
         getResource( './src/assets/db.json')
         .then((res: any) => createCards(res.styles))
-        .catch(err => console.error('error'));
+        .catch(() => console.error('error'));
 
         trigger.remove();
     });
