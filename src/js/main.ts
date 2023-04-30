@@ -1,4 +1,4 @@
-import { modals, sliders, forms } from "./modules";
+import { modals, sliders, forms, showMoreStyles } from "./modules";
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -16,4 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     forms();
+
+    showMoreStyles('.button-styles', '.styles-2');
 })
