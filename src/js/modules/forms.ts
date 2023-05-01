@@ -1,3 +1,5 @@
+import { postData } from "./services/request";
+
 export const forms = (): void => {
     const allForms: NodeListOf<HTMLFormElement> = document.querySelectorAll('form');
     const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('input');
@@ -19,18 +21,6 @@ export const forms = (): void => {
         ok: 'src/assets/img/ok.png',
         fail: 'src/assets/img/fail.png'
     };
-
-    const postData = async (url: string, data: any): Promise<string> => {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(data),
-        });
-
-        return await response.text();
-    }
 
     const clearInputs = (): void => {
         inputs.forEach((input: HTMLInputElement) => {
