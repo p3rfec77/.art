@@ -1,4 +1,4 @@
-import { modals, sliders, forms, showMoreStyles } from "./modules";
+import { modals, sliders, forms, showMoreStyles, calc } from "./modules";
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -18,4 +18,12 @@ window.addEventListener('DOMContentLoaded', () => {
     forms();
 
     showMoreStyles('.button-styles', '#styles .row');
+
+    calc({
+        size: '#size',
+        material: '#material',
+        options: '#options',
+        promocode: '.promocode',
+        result: '.calc-price'
+    });
 })
