@@ -40,7 +40,47 @@ export const filter = (): void => {
         }
     };
 
-    const showFilter = (btnSelector: string, contentSelector?: string|undefined): void => {
+    interface ITab {
+        btnSelector: string,
+        contentSelector?: string
+    }
+
+    const tabs: Array<ITab> = [
+        {
+            btnSelector: '.all', 
+            contentSelector: '.all'
+        },
+
+        {
+            btnSelector: '.girl', 
+            contentSelector: '.girl'
+        }, 
+
+        {
+            btnSelector: '.lovers', 
+            contentSelector: '.lovers'
+        },
+
+        {
+            btnSelector: '.chef',
+            contentSelector: '.chef'
+        }, 
+
+        {
+            btnSelector: '.guy', 
+            contentSelector: '.guy'
+        }, 
+
+        {
+            btnSelector: '.grandmother'
+        }, 
+
+        {
+            btnSelector: '.granddad'
+        }
+    ];
+
+    const showFilter = (btnSelector: string, contentSelector?: string): void => {
         menu.querySelector(btnSelector)?.addEventListener('click', () => {
 
             if(contentSelector) {
@@ -50,6 +90,10 @@ export const filter = (): void => {
             }
         })
     };
+
+    tabs.forEach((tab) => {
+        showFilter(tab.btnSelector, tab.contentSelector);
+    })
 
     showFilter('.all', '.all');
     showFilter('.girl', '.girl');
@@ -61,7 +105,7 @@ export const filter = (): void => {
 
     menu.addEventListener('click', (e) => {
         const target: any = e.target;
-        if(target && target.tagName === 'LI') {
+        if(target?.tagName === 'LI') {
             items.forEach((item:HTMLElement) => item.classList.remove('active'));
             target.classList.add('active');
         }
