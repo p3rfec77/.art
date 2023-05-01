@@ -1,9 +1,24 @@
 export const filter = (): void => {
     const menu: HTMLElement|null = document.querySelector('.portfolio-menu');
+    if (!menu) {
+        console.log('you miss menu');
+        return;
+    } 
+
     const wrapper: HTMLElement|null = document.querySelector('.portfolio-wrapper');
+    if (!wrapper) {
+        console.log('you miss wrapper');
+        return;
+    }
+
     const no: HTMLElement|null = document.querySelector('.portfolio-no');
-    const items: NodeListOf<HTMLLIElement> = menu!.querySelectorAll('li');
-    const markAll: NodeListOf<HTMLLIElement> = wrapper!.querySelectorAll('.all');
+    if (!no) {
+        console.log('you miss no');
+        return;
+    }
+
+    const items: NodeListOf<HTMLLIElement> = menu.querySelectorAll('li');
+    const markAll: NodeListOf<HTMLLIElement> = wrapper.querySelectorAll('.all');
  
     const typeFilter = (markType?: NodeListOf<HTMLElement>): void => {
         markAll.forEach((mark: HTMLElement) => {
@@ -11,8 +26,8 @@ export const filter = (): void => {
             mark.classList.remove('animated', 'fadeIn');
         });
 
-        no!.style.display = 'none';
-        no!.classList.remove('animated', 'fadeIn');
+        no.style.display = 'none';
+        no.classList.remove('animated', 'fadeIn');
 
         if(markType) {
             markType.forEach((mark: HTMLElement) => {
@@ -20,16 +35,16 @@ export const filter = (): void => {
                 mark.classList.add('animated', 'fadeIn');
             });
         } else {
-            no!.style.display = 'block';
-            no!.classList.add('animated', 'fadeIn');
+            no.style.display = 'block';
+            no.classList.add('animated', 'fadeIn');
         }
     };
 
     const showFilter = (btnSelector: string, contentSelector?: string|undefined): void => {
-        menu!.querySelector(btnSelector)!.addEventListener('click', () => {
+        menu.querySelector(btnSelector)?.addEventListener('click', () => {
 
             if(contentSelector) {
-             typeFilter(wrapper!.querySelectorAll(contentSelector!));
+             typeFilter(wrapper.querySelectorAll(contentSelector));
             } else {
                 typeFilter();
             }
@@ -44,8 +59,8 @@ export const filter = (): void => {
     showFilter('.grandmother');
     showFilter('.granddad');
 
-    menu!.addEventListener('click', (e) => {
-        const target = e.target as HTMLElement;
+    menu.addEventListener('click', (e) => {
+        const target: any = e.target;
         if(target && target.tagName === 'LI') {
             items.forEach((item:HTMLElement) => item.classList.remove('active'));
             target.classList.add('active');
