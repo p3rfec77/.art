@@ -1,4 +1,4 @@
-import { modals, sliders, forms, showMoreStyles, calc } from "./modules";
+import { modals, sliders, forms, showMoreStyles, calc, showPic } from "./modules";
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -26,4 +26,6 @@ window.addEventListener('DOMContentLoaded', () => {
         promocode: '.promocode',
         result: '.calc-price'
     });
+
+    showPic('.sizes-block');
 })
