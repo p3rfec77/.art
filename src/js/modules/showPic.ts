@@ -1,7 +1,7 @@
 export const showPic = (blocksSelector: string): void => {
     const blocks: NodeListOf<HTMLDivElement> = document.querySelectorAll(blocksSelector); 
 
-    blocks.forEach((block: HTMLDivElement, i) => {
+    blocks.forEach((block: HTMLDivElement) => {
         const paragraphs: NodeListOf<HTMLParagraphElement> = block.querySelectorAll('p:not(.sizes-hit)');
         const pics: NodeListOf<HTMLPictureElement> = block.querySelectorAll('img');
 
