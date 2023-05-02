@@ -3,14 +3,18 @@ export const showPic = (blocksSelector: string): void => {
 
     blocks.forEach((block: HTMLDivElement, i) => {
         const paragraphs: NodeListOf<HTMLParagraphElement> = block.querySelectorAll('p:not(.sizes-hit)');
-        const pic: HTMLPictureElement|null = block.querySelector('img');
+        const pics: NodeListOf<HTMLPictureElement> = block.querySelectorAll('img');
 
         block.addEventListener('mouseenter', () => {
             paragraphs.forEach((p:HTMLParagraphElement) => {
                 p.style.display = 'none';
             })
 
-            pic?.setAttribute('src', `./src/assets/img/sizes-${i+1}-1.png`);
+            pics[1].classList.add('animated', 'flipInY');
+            pics[0].classList.remove('animated', 'flipInY');
+
+            pics[0].style.display = 'none';
+            pics[1].style.display = 'block'
         });
 
         block.addEventListener('mouseleave', () => {
@@ -18,7 +22,11 @@ export const showPic = (blocksSelector: string): void => {
                 p.style.display = 'block';
             })
 
-            pic?.setAttribute('src', `./src/assets/img/sizes-${i+1}.png`);
+            pics[1].classList.remove('animated', 'flipInY');
+            pics[0].classList.add('animated', 'flipInY');
+
+            pics[0].style.display = 'block';
+            pics[1].style.display = 'none';
         });
     });
 };
