@@ -1,4 +1,4 @@
-import { modals, sliders, forms, showMoreStyles, calc, filter, showPic } from "./modules";
+import { modals, sliders, forms, showMoreStyles, calc, filter, showPic, accordion } from "./modules";
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -30,4 +30,6 @@ window.addEventListener('DOMContentLoaded', () => {
     filter();
 
     showPic('.sizes-block');
+
+    accordion('.accordion-heading', '.accordion-block');
 })

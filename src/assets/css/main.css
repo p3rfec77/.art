@@ -905,7 +905,13 @@ h4 {
 .often-questions .accordion-block {
   margin-top: 1rem;
   background-color: #f7e7e6;
-  padding: 3rem 4rem;
+  max-height: 0;
+  min-height: 0;
+  overflow: hidden;
+  transition: max-height 500ms;
+}
+.accordion-block p {
+  margin: 3rem 4rem;
 }
 .often-questions .accordion-block:before {
   content: '';
@@ -917,9 +923,9 @@ h4 {
   border-bottom: 3rem solid #f7e7e6;
 }
 .often-questions .ui-accordion-header-active {
-  cursor: auto;
+  cursor: pointer;
   color: #c51abb;
-  margin-bottom: 0;
+  margin-bottom: 4rem;
 }
 .often-questions .ui-accordion-header-active span {
   border-bottom: none;
