@@ -1,19 +1,9 @@
 export const filter = (): void => {
     const menu: HTMLElement|null = document.querySelector('.portfolio-menu');
-    if (!menu) {
-        console.log('you miss menu');
-        return;
-    } 
-
     const wrapper: HTMLElement|null = document.querySelector('.portfolio-wrapper');
-    if (!wrapper) {
-        console.log('you miss wrapper');
-        return;
-    }
-
     const no: HTMLElement|null = document.querySelector('.portfolio-no');
-    if (!no) {
-        console.log('you miss no');
+
+    if (!no || !wrapper || !menu) {
         return;
     }
 
@@ -41,67 +31,31 @@ export const filter = (): void => {
     };
 
     interface ITab {
-        btnSelector: string,
-        contentSelector?: string
+        btn: string,
+        content?: string
     }
 
-    const tabs: Array<ITab> = [
-        {
-            btnSelector: '.all', 
-            contentSelector: '.all'
-        },
-
-        {
-            btnSelector: '.girl', 
-            contentSelector: '.girl'
-        }, 
-
-        {
-            btnSelector: '.lovers', 
-            contentSelector: '.lovers'
-        },
-
-        {
-            btnSelector: '.chef',
-            contentSelector: '.chef'
-        }, 
-
-        {
-            btnSelector: '.guy', 
-            contentSelector: '.guy'
-        }, 
-
-        {
-            btnSelector: '.grandmother'
-        }, 
-
-        {
-            btnSelector: '.granddad'
-        }
+    const tabs: ITab[] = [
+        { btn: '.all', content: '.all'},
+        { btn: '.girl', content: '.girl'}, 
+        { btn: '.lovers', content: '.lovers'},
+        { btn: '.chef', content: '.chef'}, 
+        { btn: '.guy', content: '.guy'},
+        { btn: '.grandmother'}, 
+        { btn: '.granddad'}
     ];
 
-    const showFilter = (btnSelector: string, contentSelector?: string): void => {
-        menu.querySelector(btnSelector)?.addEventListener('click', () => {
+    const showFilter = (btn: string, content?: string): void => {
+        menu.querySelector(btn)?.addEventListener('click', () => {
 
-            if(contentSelector) {
-             typeFilter(wrapper.querySelectorAll(contentSelector));
-            } else {
-                typeFilter();
-            }
-        })
+            content ? typeFilter(wrapper.querySelectorAll(content)) : typeFilter();
+            
+        });
     };
 
     tabs.forEach((tab) => {
-        showFilter(tab.btnSelector, tab.contentSelector);
+        showFilter(tab.btn, tab.content);
     })
-
-    showFilter('.all', '.all');
-    showFilter('.girl', '.girl');
-    showFilter('.lovers', '.lovers');
-    showFilter('.chef', '.chef');
-    showFilter('.guy', '.guy');
-    showFilter('.grandmother');
-    showFilter('.granddad');
 
     menu.addEventListener('click', (e) => {
         const target: any = e.target;
