@@ -9,13 +9,15 @@ export const burger = (burgerSelector: string, menuSelector: string): void => {
 
     burger?.addEventListener('click', (e) => {
         const target = e.target as Node;
+        const tabletWidth: number = 993;
          if (target === burger || target.parentNode === burger) {
-             (menu.style.display === 'none' && window.screen.availWidth < 993) ? menu.style.display = 'block' : menu.style.display = 'none';
+             menu.style.display = (menu.style.display === 'none' && window.screen.availWidth < tabletWidth) ? 'block' : 'none';
         }
     });
 
     window.addEventListener('resize', () => {
-        if(window.screen.availWidth > 992) {
+        const BREAKPOINT: number = 992;
+        if(window.screen.availWidth >= BREAKPOINT) {
             menu.style.display = 'none';
         }
     });
