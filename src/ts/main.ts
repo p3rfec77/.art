@@ -1,4 +1,4 @@
-import { modals, sliders, forms, showMoreStyles, calc, filter, showPic, accordion, burger } from "./modules";
+import { modals, sliders, forms, showMoreStyles, calc, filter, showPic, accordion, burger, scrolling } from "./modules";
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -34,4 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
     accordion('.accordion-heading', '.accordion-block');
 
     burger('.burger', '.burger-menu');
+
+    scrolling('.pageup');
+    scrolling('.burger-menu li');
 })
