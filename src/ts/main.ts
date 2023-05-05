@@ -1,4 +1,4 @@
-import { modals, sliders, forms, showMoreStyles, calc, filter, showPic, accordion, burger, scrolling } from "./modules";
+import { modals, sliders, forms, showMoreStyles, calc, filter, showPic, accordion, burger, scrolling, drop } from "./modules";
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -37,4 +37,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     scrolling('.pageup');
     scrolling('.burger-menu li');
+
+    drop();
 })
