@@ -32,14 +32,14 @@ export const forms = (): void => {
         });
     }
 
-    const convertContainer = document.createElement('div');
+    let imgB64: string;
 
     uploads.forEach((upload: HTMLInputElement) => {
         upload.addEventListener('input', () => {
             let file = upload.files![0];
                 let reader = new FileReader();
                 reader.onloadend = function() {
-                    convertContainer.textContent = reader.result as string;
+                    imgB64 = reader.result as string;
                 };
                 reader.readAsDataURL(file);
 
@@ -77,7 +77,7 @@ export const forms = (): void => {
             const data:{[key: string]: any} = {};
             formData.forEach((value, key) => {
                 if(key === 'upload') {
-                    value = convertContainer.textContent as string;
+                    value = imgB64;
                 }
                 data[key] = value;
             });
