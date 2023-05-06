@@ -8,3 +8,4 @@ export { filter } from './filter.ts';
 export { accordion } from './accordion.ts';
 export { burger } from './burger.ts';
 export {scrolling } from './scrolling.ts';
+export { drop } from './drop.ts';

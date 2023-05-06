@@ -32,8 +32,17 @@ export const forms = (): void => {
         });
     }
 
+    let imgB64: string;
+
     uploads.forEach((upload: HTMLInputElement) => {
         upload.addEventListener('input', () => {
+            let file = upload.files![0];
+                let reader = new FileReader();
+                reader.onloadend = function() {
+                    imgB64 = reader.result as string;
+                };
+                reader.readAsDataURL(file);
+
             const [fileName, fileExt]: string[] = upload.files![0].name.split('.');
             const dots: string = fileName.length > 20 ? '...' : '.';
 
@@ -66,9 +75,15 @@ export const forms = (): void => {
 
             const formData = new FormData(form);
             const data:{[key: string]: any} = {};
-            formData.forEach((value, key) => data[key] = value);
+            formData.forEach((value, key) => {
+                if(key === 'upload') {
+                    value = imgB64;
+                }
+                data[key] = value;
+            });
+            console.log(data);
 
-            postData('https://simple-server-cumz.onrender.com/api/data', data)
+            postData('https://server-for-training.onrender.com/api/data', data)
                 .then(() => {
                     statusImg.setAttribute('src', message.ok);
                     textMessage.textContent = message.success;
